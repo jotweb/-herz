@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HERZ | Visual Storyteller & Designer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #111111;
+            --accent: #007bff;
+            --light: #ffffff;
+            --gray: #666666;
+            --bg-alt: #f8f9fa;
+        }
+
+        /* --- Global Reset --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; color: var(--primary); line-height: 1.6; overflow-x: hidden; }
+        
+        /* --- Navigation --- */
+        nav {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 8%; background: var(--light); position: sticky;
+            top: 0; z-index: 1000; box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+        }
+        .logo { font-size: 1.8rem; font-weight: 800; letter-spacing: 4px; color: var(--primary); cursor: pointer; }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 35px; }
+        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
+        .nav-links a:hover { color: var(--accent); }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle { display: none; cursor: pointer; flex-direction: column; gap: 6px; }
+        .bar { width: 28px; height: 3px; background: var(--primary); transition: 0.3s; }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; color: var(--light); position: relative;
+            background-size: cover; background-position: center;
+            animation: slideShow 18s infinite;
+        }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+        .hero-content { position: relative; z-index: 10; padding: 0 20px; }
+        .hero h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+        .hero p { font-size: 1.2rem; margin-bottom: 35px; max-width: 700px; margin-left: auto; margin-right: auto; opacity: 0.9; }
+        .btn { 
+            padding: 15px 40px; background: var(--accent); color: white; 
+            text-decoration: none; border-radius: 50px; font-weight: 700; 
+            transition: 0.3s; display: inline-block; 
+        }
+        .btn:hover { background: #0056b3; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,123,255,0.3); }
+
+        @keyframes slideShow {
+            0%, 100% { background-image: url('hero1.webp'); }
+            33% { background-image: url('hero2.webp'); }
+            66% { background-image: url('hero3.webp'); }
+        }
+
+        /* --- About Section --- */
+        .about { padding: 100px 8%; display: flex; align-items: center; gap: 80px; background: var(--bg-alt); }
+        .about-img { flex: 1; position: relative; }
+        .about-img img { width: 100%; border-radius: 20px; box-shadow: 30px 30px 0 var(--accent); }
+        .about-text { flex: 1; }
+        .about-text h2 { font-size: 2.5rem; margin-bottom: 25px; position: relative; }
+        .about-text h2::after { content: ''; width: 60px; height: 4px; background: var(--accent); position: absolute; bottom: -10px; left: 0; }
+        .about-text p { margin-bottom: 20px; color: var(--gray); font-size: 1.1rem; }
+
+        /* --- Gallery Section --- */
+        .gallery { padding: 100px 8%; }
+        .section-header { text-align: center; margin-bottom: 60px; }
+        .section-header h2 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; }
+        .gallery-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        .gallery-item { border-radius: 15px; overflow: hidden; height: 400px; cursor: pointer; }
+        .gallery-item img { 
+            width: 100%; height: 100%; object-fit: cover; transition: 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+            content-visibility: auto;
+        }
+        .gallery-item:hover img { transform: scale(1.1); filter: brightness(80%); }
+
+        /* --- Contact Section --- */
+        .contact { padding: 100px 8%; background: var(--primary); color: var(--light); text-align: center; }
+        .contact-container { max-width: 600px; margin: 0 auto; }
+        form { display: flex; flex-direction: column; gap: 15px; margin-top: 40px; }
+        input, textarea { 
+            padding: 18px; border: none; border-radius: 10px; 
+            background: #222; color: white; font-size: 1rem; 
+        }
+        input:focus, textarea:focus { outline: 2px solid var(--accent); }
+        .contact button { 
+            padding: 18px; background: var(--accent); color: white; 
+            border: none; border-radius: 10px; font-weight: 700; 
+            cursor: pointer; transition: 0.3s; font-size: 1rem;
+        }
+        .contact button:hover { background: #0056b3; letter-spacing: 1px; }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 992px) {
+            .about { flex-direction: column; text-align: center; gap: 40px; }
+            .about-text h2::after { left: 50%; transform: translateX(-50%); }
+            .about-img img { box-shadow: 15px 15px 0 var(--accent); }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 5%; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background: var(--light);
+                padding: 30px; box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { display: flex; }
+            .nav-links li { margin: 15px 0; width: 100%; text-align: center; }
+            section { padding: 60px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">HERZ</div>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Visualizing the Extraordinary</h1>
+            <p>Welcome to the official portfolio of Herz. I specialize in capturing moments that tell a story through high-end photography and modern digital design.</p>
+            <a href="#gallery" class="btn">Explore My Work</a>
+        </div>
+    </header>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="herz-profile.webp" alt="Herz Professional Portrait">
+        </div>
+        <div class="about-text">
+            <h2>The Man Behind the Lens</h2>
+            <p>Hi, I’m <strong>Herz</strong>. I believe that every image should evoke an emotion and every design should serve a purpose. My journey started with a simple curiosity for light and shadow, and it has since grown into a professional pursuit of visual perfection.</p>
+            <p>I help clients bring their visions to life through precision, efficiency, and a passion for modern aesthetics. From branding to photography, I deliver fast, high-quality results that stand the test of time.</p>
+        </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+        <div class="section-header">
+            <h2>Featured Gallery</h2>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="img1.webp" alt="Creative Project 1" loading="lazy"></div>
+            <div class="gallery-item"><img src="img2.webp" alt="Creative Project 2" loading="lazy"></div>
+            <div class="gallery-item"><img src="img3.webp" alt="Creative Project 3" loading="lazy"></div>
+            <div class="gallery-item"><img src="img4.webp" alt="Creative Project 4" loading="lazy"></div>
+            <div class="gallery-item"><img src="img5.webp" alt="Creative Project 5" loading="lazy"></div>
+            <div class="gallery-item"><img src="img6.webp" alt="Creative Project 6" loading="lazy"></div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="contact-container">
+            <h2>Let's Create Together</h2>
+            <p>Ready to start your next project? Drop a message below and I'll get back to you within 24 hours.</p>
+            <form id="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Tell me about your project..." required></textarea>
+                <button type="submit">SEND MESSAGE</button>
+            </form>
+            <div id="form-message" style="margin-top:20px; display:none; color: var(--accent);">Thank you! Herz will contact you shortly.</div>
+        </div>
+    </section>
+
+    <script>
+        // 1. Mobile Menu Toggle
+        const menu = document.querySelector('#mobile-menu');
+        const navList = document.querySelector('#nav-list');
+
+        menu.addEventListener('click', () => {
+            navList.classList.toggle('active');
+            // Animate hamburger to X (optional)
+            const bars = document.querySelectorAll('.bar');
+            bars[0].style.transform = navList.classList.contains('active') ? 'rotate(45deg) translate(5px, 6px)' : 'none';
+            bars[1].style.opacity = navList.classList.contains('active') ? '0' : '1';
+            bars[2].style.transform = navList.classList.contains('active') ? 'rotate(-45deg) translate(7px, -8px)' : 'none';
+        });
+
+        // 2. Form Success Message Simulation
+        const form = document.getElementById('contact-form');
+        const formMsg = document.getElementById('form-message');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            form.style.display = 'none';
+            formMsg.style.display = 'block';
+        });
+
+        // 3. Smooth Scroll Close Menu
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
